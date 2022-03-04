@@ -23,6 +23,10 @@
        <a href="/" class="btn btn-secondary">All Articles</a>
        <a href="/articles/edit/<%= article.slug %>" class="btn btn-info">Edit</a>
 
+       <div class="mt-2">
+        <%- article.sanitizedHtml %>
+       </div>
+
        <div class="card mt-4">
             <div class="card-body">
                 <%= article.description %>

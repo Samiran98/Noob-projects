@@ -32,6 +32,7 @@
                 <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
                     <button class="btn btn-danger">Delete</button>
                 </form>
+                <a class="btn btn-info" href="articles/edit/<%= article.slug %>">Edit</a>
             </div>
         </div>
        <% }) %>

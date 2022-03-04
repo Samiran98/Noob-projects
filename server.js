@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended : false }))
 app.use(methodOverride('_method'))
 
 app.get('/',async (req, res) => {
-    const articles = await Article.find()
+    const articles = (await Article.find()).reverse()
     res.render('articles/index', { articles: articles })
 })
 
