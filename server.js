@@ -14,10 +14,19 @@ app.set('view engine', 'ejs')
 
 app.use(express.urlencoded({ extended : false }))
 app.use(methodOverride('_method'))
+app.use(express.static(__dirname+'/public'));
 
 app.get('/',async (req, res) => {
     const articles = (await Article.find()).reverse()
     res.render('articles/index', { articles: articles })
+})
+
+app.get('/login',async (req, res) => {
+    res.render('user/login')
+})
+
+app.get('/registration',async (req, res) => {
+    res.render('user/registration')
 })
 
 app.use('/articles', articleRouter)
