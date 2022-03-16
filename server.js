@@ -1,8 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const articleRouter = require('./routes/article')
+const userRouter = require('./routes/user')
 const Article = require('./models/article')
 const methodOverride = require('method-override')
+const bodyParser = require('body-parser')
+const bcrypt = require('bcrypt')
 
 const app = express()
 
@@ -15,6 +18,7 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended : false }))
 app.use(methodOverride('_method'))
 app.use(express.static(__dirname+'/public'));
+app.use(bodyParser.json())
 
 app.get('/',async (req, res) => {
     const articles = (await Article.find()).reverse()
@@ -30,5 +34,6 @@ app.get('/registration',async (req, res) => {
 })
 
 app.use('/articles', articleRouter)
+app.use('/auth',userRouter)
 
 app.listen(5000)

@@ -15,7 +15,7 @@
 
 <body>
     <div class="container">
-        <form>
+        <form id="form">
             <div class="card" style="width: 28rem;">
                 <div class="card-header text-center">
                     <h3>New Registration</h3>
@@ -39,6 +39,12 @@
                         </div>
                         <div class="col">
                             <div class="row d-inline">
+                                <label for="name">Username</label>
+                                <input class="form-control" type="text" id="username" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row d-inline">
                                 <label for="email">Email</label>
                                 <input class="form-control" type="email" id="email" required>
                             </div>
@@ -49,13 +55,13 @@
                                 <input class="form-control" type="password" id="password" required>
                             </div>
                         </div>
-                        <div class="col">
+                        <!-- <div class="col">
                             <div class="row d-inline">
                                 <label for="password">Confirm Password</label>
                                 <input class="form-control" type="password" id="c_password" required>
                             </div>
-                        </div>
-                        <button class="btn btn-success" onclick="confirmPassword()">Submit</button>
+                        </div> -->
+                        <button type="submit" id="submit" class="btn btn-success">Submit</button>
                         <a class="btn btn-secondary" href="/login">Cancel</a>
                     </div>
                 </div>
@@ -67,24 +73,49 @@
 </html>
 
 <script>
-function confirmPassword(e) {
-    e.preventDefault()
-    console.log('hii')
-    const pass = document.getElementById('password').value
-    const cnf_pass = document.getElementById('c_password').value
-    if(pass === cnf_pass) return
-    document.getElementById('pass_error_alert').style.display = "block"
+// function confirmPassword(e) {
+//     e.preventDefault()
+//     console.log('hii')
+//     const pass = document.getElementById('password').value
+//     const cnf_pass = document.getElementById('c_password').value
+//     if(pass === cnf_pass) return
+//     document.getElementById('pass_error_alert').style.display = "block"
+// }
+const form = document.getElementById('form')
+
+form.addEventListener('submit', registerUser)
+async function registerUser(event) {
+    event.preventDefault()
+    const userDet = {
+        name : document.getElementById('name').value,
+        username : document.getElementById('username').value,
+        email : document.getElementById('email').value,
+        password : document.getElementById('password').value,
+    }
+    const result = await fetch('/auth/register',{
+        method:'POST',
+        headers: {
+            'contentType' : 'application/json',
+        },
+        body: JSON.stringify(userDet)
+    }).then((res) => {
+        //console.log(res)
+    })
 }
+
 </script>
 <style>
     body {
         background-color: rgba(12, 134, 108, 0.993);
+        background-image: url('/Images/kindpng_17814.png');
+        background-repeat: no-repeat;
+        background-size: 80% 200%;
     }
 
     .card {
         position: relative;
         margin-left: 30%;
-        margin-top: 7%;
+        margin-top: 5%;
     }
 
     .fields {

@@ -40,11 +40,12 @@
                                 <input class="form-control" type="password" id="password" required>
                             </div>
                         </div>
-                        <button class="btn btn-block btn-success">Login</button>
-                        <a class="link link-dark" href="/registration">New Registration?</a>
+                        <button type="button" class="btn btn-success br w-100">Login</button>
+                        <div>
+                            <a class="d-flex justify-content-evenly mt-2" href="/registration">New Registration?</a>
+                            <a class="d-flex justify-content-evenly" href="/registration">Forgot Password?</a>
+                        </div>
                     </div>
-                    
-                    
                 </div>
             </div>
         </form>
@@ -55,6 +56,9 @@
 <style>
     body {
         background-color: rgba(12, 134, 108, 0.993);
+        background-image: url('/Images/kindpng_17814.png');
+        background-repeat: no-repeat;
+        background-size: 80% 250%;
     }
 
     .card {
@@ -65,6 +69,16 @@
 
     .fields {
         padding: 2%;
+    }
+    .br{
+        color: rgba(12, 134, 108, 0.993);
+        border-radius: 40px;
+        background: transparent;
+        transition: all 0.3s ease 0s;
+    }
+    .br:hover{
+        color: #FFF;
+        background: rgba(12, 134, 108, 0.993);
     }
     .link:hover{
         color:rgb(0, 132, 255);
