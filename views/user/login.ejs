@@ -15,7 +15,7 @@
 
 <body>
     <div class="container">
-        <form action="">
+        <form id="form">
             <div class="card" style="width: 28rem;">
                 <div class="card-header text-center">
                     <h3>Login</h3>
@@ -30,17 +30,17 @@
                     <div class="fields">
                         <div class="col">
                             <div class="row d-inline">
-                                <label for="email">Email/Username:</label>
-                                <input class="form-control" type="email" id="email" required>
+                                <label for="email">Username:</label>
+                                <input class="form-control" type="text" id="username" name="username" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="row d-inline">
                                 <label for="password">Password:</label>
-                                <input class="form-control" type="password" id="password" required>
+                                <input class="form-control" type="password" name="password" id="password" required>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-success br w-100">Login</button>
+                        <button type="submit" class="btn btn-success br w-100">Login</button>
                         <div>
                             <a class="d-flex justify-content-evenly mt-2" href="/registration">New Registration?</a>
                             <a class="d-flex justify-content-evenly" href="/registration">Forgot Password?</a>
@@ -53,6 +53,32 @@
 </body>
 
 </html>
+<script>
+    const form = document.getElementById('form')
+    form.addEventListener('submit',loginHandler)
+
+    async function loginHandler(event){
+        event.preventDefault()
+        const loginDet = {
+            username : document.getElementById('username').value,
+            password : document.getElementById('password').value
+        }
+        const result = await fetch('/auth/login', {
+            method:'POST',
+            headers : {
+                'content-Type':'application/json'
+            },
+            body : JSON.stringify(loginDet)
+        })
+        .then(response => response.json())
+        .then(data => {
+        console.log('Success:', data);
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
+    }
+</script>
 <style>
     body {
         background-color: rgba(12, 134, 108, 0.993);

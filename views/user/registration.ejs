@@ -34,25 +34,25 @@
                         <div class="col">
                             <div class="row d-inline">
                                 <label for="name">Name</label>
-                                <input class="form-control" type="name" id="name" required>
+                                <input class="form-control" type="text" id="name" name="name" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="row d-inline">
                                 <label for="name">Username</label>
-                                <input class="form-control" type="text" id="username" required>
+                                <input class="form-control" type="text" id="username" name="username" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="row d-inline">
                                 <label for="email">Email</label>
-                                <input class="form-control" type="email" id="email" required>
+                                <input class="form-control" type="email" id="email" name="email" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="row d-inline">
                                 <label for="password">Password</label>
-                                <input class="form-control" type="password" id="password" required>
+                                <input class="form-control" type="password" id="password" name="password" required>
                             </div>
                         </div>
                         <!-- <div class="col">
@@ -92,15 +92,19 @@ async function registerUser(event) {
         email : document.getElementById('email').value,
         password : document.getElementById('password').value,
     }
+
     const result = await fetch('/auth/register',{
         method:'POST',
         headers: {
-            'contentType' : 'application/json',
+            'content-Type' : 'application/json',
         },
-        body: JSON.stringify(userDet)
-    }).then((res) => {
-        //console.log(res)
+        body: JSON.stringify(userDet),
+    }).then( (res) => {
+        console.log(res)
+    }).catch(error =>{
+        console.log(error)
     })
+    console.log(result)
 }
 
 </script>

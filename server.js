@@ -5,7 +5,6 @@ const userRouter = require('./routes/user')
 const Article = require('./models/article')
 const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
-const bcrypt = require('bcrypt')
 
 const app = express()
 
@@ -33,7 +32,11 @@ app.get('/registration',async (req, res) => {
     res.render('user/registration')
 })
 
+app.get('/authentication', async (req,res) => {
+    res.render('user/authentication')
+})
+
 app.use('/articles', articleRouter)
-app.use('/auth',userRouter)
+app.use('/auth', userRouter)
 
 app.listen(5000)
